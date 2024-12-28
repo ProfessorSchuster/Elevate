@@ -1,24 +1,24 @@
-# Frontend Dockerfile
-FROM node:18
+# Dockerfile für das Frontend
+FROM --platform=linux/arm64 node:18-bullseye-slim
 
 # Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Kopiere die package.json und installiere Abhängigkeiten
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
 
-# Copy source code
+# Kopiere den restlichen Code
 COPY . .
 
-# Build the app
+# Baue die React-App
 RUN npm run build
 
-# Serve the built app
+# Installiere den "serve"-Server für statische Dateien
 RUN npm install -g serve
-CMD ["serve", "-s", "build"]
 
-# Expose the port for the app
+# Expose port 3000
 EXPOSE 3000
+
+# Starte die Anwendung
+CMD ["npm", "run", "dev"]
