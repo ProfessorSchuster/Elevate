@@ -1,23 +1,19 @@
-# Offizielles Node.js-Image verwenden
-FROM node:18
+# backend/Dockerfile
+FROM node:18-alpine
 
-# Arbeitsverzeichnis im Container setzen
+ENV NODE_ENV=development
 WORKDIR /app
 
-# Nur package.json kopieren
-COPY package.json ./
+COPY package.json package-lock.json ./
+RUN npm install
 
-# TypeScript-Abhängigkeiten installieren
-RUN npm install --save-dev @types/node @types/express
+RUN npm rebuild bcrypt || echo "Skipping bcrypt rebuild"
 
-# Alle restlichen Dateien kopieren (inkl. tsconfig.json und src)
+# Code reinkopieren
 COPY . .
 
-# TypeScript builden
-RUN npm run build
+# WICHTIG: Prisma Client generieren
+RUN npx prisma generate
 
-# Standardport des Containers
 EXPOSE 5000
-
-# Startbefehl für das Backend
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]

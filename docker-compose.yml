@@ -4,31 +4,49 @@ services:
     container_name: elevate-database
     ports:
       - "${DB_PORT_HOST}:${DB_PORT_CONTAINER}"
-    environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
+    env_file:
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - elevate_network
+
   backend:
     build:
       context: ./backend
+    container_name: elevate-backend
+    environment:
+      - NODE_ENV=development
     ports:
       - "${BACKEND_PORT_HOST}:${BACKEND_PORT_CONTAINER}"
     depends_on:
       - database
-    environment:
-      DB_HOST: ${DB_HOST}
-      DB_PORT: ${DB_PORT_CONTAINER}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME}
+    volumes:
+      - ./backend:/app
+    networks:
+      - elevate_network
+    command: npm run dev
+
   frontend:
     build:
       context: ./frontend
+    platform: linux/amd64
+    container_name: elevate-frontend
     ports:
-      - "${FRONTEND_PORT_HOST}:${FRONTEND_PORT_CONTAINER}"
+      - "3000:3000"
     depends_on:
       - backend
+    environment:
+      - VITE_PORT=3000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - elevate_network
+
 volumes:
   postgres_data:
+
+networks:
+  elevate_network:
+    driver: bridge

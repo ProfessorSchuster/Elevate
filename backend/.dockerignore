@@ -1,0 +1,12 @@
+# Keine lokalen node_modules kopieren
+node_modules
+
+# Keine Docker Artefakte, Logs etc.
+Dockerfile
+docker-compose.yml
+*.log
+.git
+.gitignore
+.vscode
+.idea
+dist
