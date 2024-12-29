@@ -1,0 +1,34 @@
+services:
+  database:
+    image: postgres:15
+    container_name: elevate-database
+    ports:
+      - "${DB_PORT_HOST}:${DB_PORT_CONTAINER}"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "${BACKEND_PORT_HOST}:${BACKEND_PORT_CONTAINER}"
+    depends_on:
+      - database
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT_CONTAINER}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "${FRONTEND_PORT_HOST}:${FRONTEND_PORT_CONTAINER}"
+    depends_on:
+      - backend
+volumes:
+  postgres_data:
