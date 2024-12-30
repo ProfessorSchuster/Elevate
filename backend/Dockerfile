@@ -12,7 +12,7 @@ RUN npm rebuild bcrypt || echo "Skipping bcrypt rebuild"
 # Code reinkopieren
 COPY . .
 
-# WICHTIG: Prisma Client generieren
+# Prisma Client generieren
 RUN npx prisma generate
 
 EXPOSE 5000

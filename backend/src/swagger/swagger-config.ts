@@ -1,17 +1,33 @@
-import { Options } from 'swagger-jsdoc'
+import { Options } from "swagger-jsdoc";
 
 export const swaggerOptions: Options = {
   definition: {
-    openapi: '3.0.0',
+    openapi: "3.0.0",
     info: {
-      title: 'Meine API',
-      version: '1.0.0',
-      description: 'Beschreibung deiner API',
+      title: "Elevate API",
+      version: "1.0.0",
+      description: "API-Dokumentation für das Elevate-Projekt",
     },
-    // Optional: servers, components, security, usw.
+    servers: [
+      {
+        url: "http://localhost:5000",
+        description: "Lokale Entwicklungsumgebung",
+      },
+    ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
-  // Quelle(n) für deine JSDoc/TypeScript-Deklarationen
-  apis: [
-    './src/routes/**/*.ts',   // <-- falls du hier JSDoc-Kommentare verwendest
-  ],
-}
+  apis: ["./src/**/*.ts"], // Scanne alle Dateien für Swagger-Kommentare
+};
