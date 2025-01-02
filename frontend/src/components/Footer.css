@@ -1,0 +1,12 @@
+/* src/components/Footer.css */
+
+.footer {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    text-align: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
+  

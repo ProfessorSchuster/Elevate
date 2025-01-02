@@ -1,0 +1,42 @@
+/* src/pages/FreeTraining.css */
+
+.free-training {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-md);
+  }
+  
+  .free-training__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .free-training__form input {
+    padding: var(--spacing-sm);
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+  }
+  
+  .free-training__list {
+    margin-top: var(--spacing-lg);
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .free-training__list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .free-training__list li {
+    background-color: var(--color-light);
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+  

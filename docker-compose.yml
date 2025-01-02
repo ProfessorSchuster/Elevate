@@ -19,6 +19,7 @@ services:
       - .env
     environment:
       - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
     ports:
       - "${BACKEND_PORT_HOST}:${BACKEND_PORT_CONTAINER}"
     depends_on:
@@ -28,7 +29,8 @@ services:
       - /app/node_modules
     networks:
       - elevate_network
-    command: sh -c "npx prisma migrate deploy && npx prisma db seed && npm run dev"
+    command: sh -c "npx prisma migrate deploy && npx prisma db seed && npx nodemon --exec ts-node src/server.ts"
+
 
   frontend:
     build:

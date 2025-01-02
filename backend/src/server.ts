@@ -18,7 +18,7 @@ app.use('/auth', authRoutes);
 
 // Beispiel-Route
 app.get('/', (req, res) => {
-  res.send('Hello, Elevate!');
+  res.send('Hello, Cedric!');
 });
 
 // Fehlerbehandlung (z. B. für nicht gefundene Routen)

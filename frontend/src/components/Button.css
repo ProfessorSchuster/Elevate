@@ -1,0 +1,23 @@
+/* src/components/Button.css */
+
+.button {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: darken(var(--color-primary), 10%);
+  }
+  
+  .button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }
+  

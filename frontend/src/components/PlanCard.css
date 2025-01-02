@@ -1,0 +1,32 @@
+/* src/components/PlanCard.css */
+
+.plan-card {
+    background-color: var(--color-light);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .plan-card__actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+  }
+  
+  .plan-card__actions button {
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    border: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .plan-card__actions button:hover {
+    background-color: #e68a00; /* Etwas dunkler als --color-secondary */
+  }
+  
