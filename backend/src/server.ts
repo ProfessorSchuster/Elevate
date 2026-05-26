@@ -30,4 +30,4 @@ app.use((req, res) => {
 const PORT = process.env.BACKEND_PORT_HOST || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}. Docs at http://localhost:${PORT}/docs`);
-});
+}); 

@@ -31,5 +31,6 @@ model Session {
   user        User     @relation(fields: [userId], references: [id])
   token       String
   expiresAt   DateTime
+  createdAt   DateTime @default(now())
 }
 
